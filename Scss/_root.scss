@@ -7,18 +7,70 @@
 
 html, body{
   margin: 30px;
-  background-color: rgb(216, 197, 172);
+  background-color: rgb(216, 172, 194);
 }
 
 .container {
   padding: 3px;
-  margin-left: -2px;;
+  margin-left: -2px;
+  
 }
 .form-group{
   margin-bottom: 40px;
 
 }
 
+.form-group input{
+  border: 3px solid #f0f0f0;
+  border-radius: 4px;
+	
+
+}
+
+.form-group.success input{
+  border-color: rgb(142, 243, 142);
+}
+
+.form-group.error input{
+  border-color: rgb(245, 130, 130);
+}
+
+
+.form-group i{
+  position: relative;
+  visibility: hidden;
+  bottom:40px;
+  left: 560px;
+
+  
+}
+
+
+.form-group.success i.fa-check-circle{
+  visibility: visible;
+  color: green;
+
+}
+
+.form-group.error i.fa-exclamation-circle{
+  visibility: visible;
+  color:red;
+  left: 540px;
+}
+
+.form-group small{
+  visibility: hidden;
+  
+  
+ }
+
+ .form-group.error small{
+  visibility: visible;
+  color:red;
+ 
+
+}
+ 
 
 .row{
   margin-bottom: 5px;
@@ -35,6 +87,18 @@ html, body{
 }
 
 
+ #panel, #flip {
+   padding: 5px;
+   text-align: left;
+   font-weight: bold;
+   background-color: #e5eecc;
+   border: solid 1px #c3c3c3;
+ }
+ 
+ #panel {
+   padding: 50px;
+   display: none;
+ }
  
 
 
