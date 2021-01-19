@@ -33,13 +33,14 @@ form.addEventListener('submit',(e) => {
     e.preventDefault();
 
     checkInput();
-   
+   /* createElement () 
+    fillPanel() */
     
-      /*  document.getElementById('text-output').innerText = "Användare skapades!"
+       /*  document.getElementById('text-output').innerText = "Användare skapades!"
         createElement();
         fillPanel(); */
       console.log('done')
-      
+     
 });
 
 function checkInput(){
@@ -147,7 +148,8 @@ function checkInput(){
    
 
 }
-
+const user = []
+let users 
 //functions
 function setErrorFor(input, message){
     const formGroup = input.parentElement;
@@ -171,11 +173,136 @@ function isText(text){
 function isEmail(email){
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
+
+
+
+
+
+
+
+
 function addInput(){
    
-      const user = []
-      let users = new User(`${fname.value}`, `${lname.value}`, `${phone.value}`, `${email.value}`, `${street.value}`, `${zipcode.value}`, `${district.value}`);
-      user.push(users)
-      document.getElementById('flip').innerText = "Användare skapades!"
-      console.log(user)
+       const user = []
+      let users = new User(`${fname.value}`, `${lname.value}`, `${phone.value}`, `${email.value}`, `${street.value}`, `${zipcode.value}`, `${district.value}`, `${district.value}`);
+      
+      user.push(users) 
+
+     /* var e = document.getElementById("part2");
+      e.id = users.id;
+       var currentDiv = document.getElementById('part2');
+      currentDiv.appendChild("div")
+      userDiv.appendChild(flipDiv)
+    userDiv.appendChild(panelDiv)
+      for(let i=0; i < user.length; i++) {
+        document.getElementById('flip').innerText = `${users.fname}` + ` ${users.lname}`
+        document.getElementById('fullname').innerText = `${users.fname}` + ` ${users.lname}`
+        document.getElementById('userId').innerText = users.id
+        document.getElementById('userEmail').innerText = `${users.email}` 
+        document.getElementById('userphone').innerText = `${users.phone}`
+        document.getElementById('userstreet').innerText = `${users.street}`
+        document.getElementById('userzip').innerText = `${users.zipcode}`
+        document.getElementById('userdist').innerText = `${users.district}`
+        
+        
+        //document.querySelector('userEmail').innerHTML += `<div><span>${users.email}</div>`
+        //console.log(user[i]);
+      }  */
+      //console.log(e.id) 
+      
+    
+      
+//createElement()
+//fillPanel()
+        
+
+const userDiv = document.createElement('div')
+const flipDiv = document.createElement('div')
+const panelDiv = document.createElement('div')
+
+// giv them class & ID
+flipDiv.className = "flip"
+panelDiv.className = "panel"
+userDiv.id = `user`
+flipDiv.id = `flip`
+panelDiv.id = `panel`
+
+  
+flipDiv.innerText = `${users.fname}` + ` ${users.lname}`
+
+  
+var currentDiv = document.getElementById('part2');
+currentDiv.appendChild(userDiv)
+userDiv.appendChild(flipDiv)
+userDiv.appendChild(panelDiv)
+    console.log(user)
+  
+ 
+    iconElement = document.createElement("div")
+    iconElement.classList.add("fa")
+    flipDiv.appendChild(iconElement)
+    iconElement.innerHTML="&#xf062;"
+
+    idElement = document.createElement("p")
+    idElement.innerText = `Id: ${users.id}`
+  
+    emailElement = document.createElement("p")
+    emailElement.innerText = `E-mail: ${users.email}`
+    emailElement.id = `${users.id}-email`
+  
+    phoneElement = document.createElement("p")
+    phoneElement.innerText = `Phone: ${users.phone}`
+    phoneElement.id = `${users.id}-phone`
+  
+    panelDiv.appendChild(idElement)
+    panelDiv.appendChild(emailElement)
+    panelDiv.appendChild(phoneElement) 
+
+
+   
+    
+    
 }
+
+
+
+function createElement () {
+    // CREATE ELEMENT
+    const userDiv = document.createElement('div')
+    const flipDiv = document.createElement('div')
+    const panelDiv = document.createElement('div')
+  
+    // giv them class & ID
+    flipDiv.className = "flip"
+    panelDiv.className = "panel"
+    userDiv.id = `user`
+    flipDiv.id = `flip`
+    panelDiv.id = `panel`
+  
+  	
+    flipDiv.innerText = `${users.fname}` + ` ${users.lname}`
+  
+  	
+    var currentDiv = document.getElementById('part2');
+    currentDiv.appendChild(userDiv)
+    userDiv.appendChild(flipDiv)
+    userDiv.appendChild(panelDiv)
+  }
+
+  function fillPanel() {
+    idElement = document.createElement("div")
+    idElement.innerText = `Id: ${users.id}`
+  
+    emailElement = document.createElement("p")
+    emailElement.innerText = `E-mail: ${users.email}`
+    emailElement.id = `${users.id}-email`
+  
+    phoneElement = document.createElement("p")
+    phoneElement.innerText = `Phone: ${users.phone}`
+    phoneElement.id = `${users.id}-phone`
+  
+    panelDiv.appendChild(idElement)
+    panelDiv.appendChild(emailElement)
+    panelDiv.appendChild(phoneElement)
+  }
+ 
