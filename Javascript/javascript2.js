@@ -228,7 +228,7 @@ flipDiv.id = `flip`
 panelDiv.id = `panel`
 
   
-flipDiv.innerText = `${users.fname}` + ` ${users.lname}`
+
 
   
 var currentDiv = document.getElementById('part2');
@@ -237,11 +237,19 @@ userDiv.appendChild(flipDiv)
 userDiv.appendChild(panelDiv)
     console.log(user)
   
- 
-    iconElement = document.createElement("div")
+    displayname = document.createElement("div")
+    displayname.id ="displayname"
+    flipDiv.appendChild(displayname)
+    displayname.innerText = `${users.fname}` + ` ${users.lname}`
+
+    btnElement = document.createElement("button")
+    btnElement.classList.add("btn")
+    btnElement.id = "btn"
+    flipDiv.appendChild(btnElement)
+    iconElement = document.createElement("i")
     iconElement.classList.add("fa")
-    flipDiv.appendChild(iconElement)
-    iconElement.innerHTML="&#xf062;"
+    iconElement.innerHTML="&#xf063;"
+    btnElement.appendChild(iconElement) 
 
     idElement = document.createElement("p")
     idElement.innerText = `Id: ${users.id}`
@@ -258,15 +266,29 @@ userDiv.appendChild(panelDiv)
     panelDiv.appendChild(emailElement)
     panelDiv.appendChild(phoneElement) 
 
+    var element = document.getElementById("btn");
+    element.onclick = function( myFunction) {
+      console.log( myFunction);
+    
+    }
+    
 
-   
     
     
 }
 
 
 
-function createElement () {
+
+ 
+
+
+
+
+
+
+
+/* function createElement () {
     // CREATE ELEMENT
     const userDiv = document.createElement('div')
     const flipDiv = document.createElement('div')
@@ -304,5 +326,5 @@ function createElement () {
     panelDiv.appendChild(idElement)
     panelDiv.appendChild(emailElement)
     panelDiv.appendChild(phoneElement)
-  }
+  } */
  
