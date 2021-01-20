@@ -19,6 +19,7 @@
       return v.toString(16);
     });
   }
+  document.getElementById("btn1").disabled = true;
 
 const form = document.getElementById('register');
 const fname = document.getElementById('fname');
@@ -32,13 +33,14 @@ const district = document.getElementById('district');
 form.addEventListener('submit',(e) => {
     e.preventDefault();
 
-    checkInput();
-   /* createElement () 
+    checkInput()
+  /*  createElement () 
     fillPanel() */
     
        /*  document.getElementById('text-output').innerText = "Användare skapades!"
         createElement();
         fillPanel(); */
+        addInput()
       console.log('done')
      
 });
@@ -51,16 +53,19 @@ function checkInput(){
     const streetValue = street.value
     const zipValue = zipcode.value
     const districtValue = district.value
-
-   
+    let btnable = true
+    
+    
     // first name
     if(fnameValue ===''){
         setErrorFor(fname, 'First name must not be empty.')
-        return false;
+        console.log("femp")
+        btnable =  false;
     }
     else if(!isText(fnameValue)){
         setErrorFor(fname, 'Please write letters.')
-        return false;
+        console.log("fle")
+        btnable =  false;
     }
     else{
         setSuccessfor(fname)
@@ -71,11 +76,13 @@ function checkInput(){
     //last name
     if(lnameValue ===''){
         setErrorFor(lname, 'Last name must not be empty.')
-        return false;
+        console.log("lem")
+        btnable =  false;
     }
     else if(!isText(lnameValue)){
         setErrorFor(lname, 'Please write letters.')
-        return false;
+        console.log("lle")
+        btnable =  false;
     }
     else{
         setSuccessfor(lname)
@@ -86,7 +93,7 @@ function checkInput(){
      //phone
      if(phoneValue ===''){
         setErrorFor(phone, 'Phone must not be empty.')
-        return false;
+        btnable =  false;
     }
     else{
         setSuccessfor(phone)
@@ -97,11 +104,13 @@ function checkInput(){
     //email
     if(emailValue ===''){
         setErrorFor(email, 'Email must not be empty.')
-        return false;
+        console.log("+++++")
+        btnable =  false;
     }
-    else if(!isEmail(emailValue)){
+    if(!isEmail(emailValue)){
         setErrorFor(email, 'Email is not valid.')
-        return false;
+        console.log("emnot")
+        btnable =  false;
     }
 
     else{
@@ -113,7 +122,7 @@ function checkInput(){
      //street
      if(streetValue ===''){
         setErrorFor(street, 'Street must not be empty.')
-        return false;
+        btnable =  false;
     }
     else{
         setSuccessfor(street)
@@ -124,7 +133,7 @@ function checkInput(){
      //zipcode
      if(zipValue ===''){
         setErrorFor(zipcode, 'Zipcode must not be empty.')
-        return false;
+        btnable =  false;
     }
     else{
         setSuccessfor(zipcode)
@@ -135,16 +144,30 @@ function checkInput(){
      //district
      if(districtValue ===''){
         setErrorFor(district, 'District must not be empty.')
-        return false;
+        btnable =  false;
     }
     else{
         setSuccessfor(district)
        
         
     }
+
+    if(btnable){
+        document.getElementById("btn1").disabled = false;
+        console.log('xxxx')
+        
+        }
+        else {
+            document.getElementById("btn1").disabled = true;
+} 
      console.log('well')
-     addInput();
-    return true;
+    return true
+     
+     /* if(true){
+        console.log('wellbbbb')
+          addInput();
+     } */
+    
    
 
 }
@@ -152,6 +175,7 @@ const user = []
 let users 
 //functions
 function setErrorFor(input, message){
+    
     const formGroup = input.parentElement;
     const small = formGroup.querySelector('small');
 
@@ -176,14 +200,24 @@ function isEmail(email){
 
 
 
-
+function resetForm(){
+    document.getElementById("btn1").disabled = true;
+    var frmMain = document.forms[0]; 
+    frmMain.reset();
+    checkInput()
+    console.log("gfgfgfg")
+    }
 
 
 
 
 function addInput(){
-   
+    console.log('ppp')
        const user = []
+       
+        console.log('wellbbbb')
+          
+     
       let users = new User(`${fname.value}`, `${lname.value}`, `${phone.value}`, `${email.value}`, `${street.value}`, `${zipcode.value}`, `${district.value}`, `${district.value}`);
       
       user.push(users) 
@@ -273,9 +307,9 @@ userDiv.appendChild(panelDiv)
     }
     
 
-    
-    
 }
+    
+
 
 
 
