@@ -1,120 +1,354 @@
 
-/* import Person from "./Person.js";
-import {uuidv4} from "./functions.js"; */
- 
-
-
-class Person{
-  constructor(fname, lname, phone, email, street, zipcode, district){
-      this.fname = fname
-      this.lname = lname
-      this.phone = phone
-      this.email= email
-      this.street = street
-      this.zipcode = zipcode
-      this.district = district
-      this.id = uuidv4()
+ class User{
+    constructor(fname, lname, phone, email, street, zipcode, district){
+        this.fname = fname
+        this.lname = lname
+        this.phone = phone
+        this.email= email
+        this.street = street
+        this.zipcode = zipcode
+        this.district = district
+        this.id = uuidv4()
+    }
+    
   }
   
-}
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+  document.getElementById("btn1").disabled = true;
 
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
+const form = document.getElementById('register');
+const fname = document.getElementById('fname');
+const lname = document.getElementById('lname');
+const phone = document.getElementById('phone');
+const email = document.getElementById('email');
+const street = document.getElementById('street');
+const zipcode = document.getElementById('zipcode');
+const district = document.getElementById('district');
 
-const users = []
+form.addEventListener('submit',(e) => {
+    e.preventDefault();
 
-
- // event
-//let arryData = []
- document.getElementById('register').addEventListener('submit', (e) => {
-  e.preventDefault()
-
-
+    checkInput()
   
-  
-//if ( ele)
+        addInput()
+      
+      
+     
+});
 
-  //for (let element of e.target){
-    /* console.log(element.value)*/
+function checkInput(){
+    const fnameValue = fname.value
+    const lnameValue = lname.value
+    const phoneValue = phone.value
+    const emailValue = email.value
+    const streetValue = street.value
+    const zipValue = zipcode.value
+    const districtValue = district.value
+    let btnable = true
     
-   
-    let firstName = e.target[0].value
-    let lastName = e.target[1].value
-    let phonenum = e.target[2].value
-    let emailAddress = e.target[3].value
-    let streetAddress = e.target[4].value
-    let zipnum = e.target[5].value
-    let districtAddress = e.target[6].value
-   
-  //}
-
- let person = new Person(firstName, lastName , phonenum , emailAddress , streetAddress ,zipnum , districtAddress )
- users.push(person)
-  document.getElementById('flip').innerHTML += `<div><span style="margin-right: 0.3rem">${person.fname}</span><span>${person.lname}</span></div>`
-  document.getElementById('panel').innerHTML += `<div><span style="margin-right: 0.3rem">${person.fname}</span><span>${person.lname}</span><span>${person.id}</span></div>`
-
-})
-
-
- 
-function validateInput(e){
-  
-  const type = e.getAttribute('type')
-
-    switch(type){
-
-
-      case"text":
-      validateLength(e)
-      break;
-
-      case"email":
-      validateEmail(e)
-      break;
-
-      case"number":
-    validateNumber(e)
-      break;
+    
+    // first name
+    if(fnameValue ===''){
+        setErrorFor(fname, 'First name must not be empty.')
+       
+        btnable =  false;
+    }
+    else if(!isText(fnameValue)){
+        setErrorFor(fname, 'Please write letters.')
+        
+        btnable =  false;
+    }
+    else{
+        setSuccessfor(fname)
+      
+     
     }
 
+    //last name
+    if(lnameValue ===''){
+        setErrorFor(lname, 'Last name must not be empty.')
+       
+        btnable =  false;
+    }
+    else if(!isText(lnameValue)){
+        setErrorFor(lname, 'Please write letters.')
+        
+        btnable =  false;
+    }
+    else{
+        setSuccessfor(lname)
+        
+    }
+
+
+     //phone
+     if(phoneValue ===''){
+        setErrorFor(phone, 'Phone must not be empty.')
+        btnable =  false;
+    }
+    else{
+        setSuccessfor(phone)
+        
+    }
+
+
+    //email
+    if(emailValue ===''){
+        setErrorFor(email, 'Email must not be empty.')
+        
+        btnable =  false;
+    }
+    if(!isEmail(emailValue)){
+        setErrorFor(email, 'Email is not valid.')
+       
+        btnable =  false;
+    }
+
+    else{
+        setSuccessfor(email)
+       
+    }
+
+
+     //street
+     if(streetValue ===''){
+        setErrorFor(street, 'Street must not be empty.')
+        btnable =  false;
+    }
+    else{
+        setSuccessfor(street)
+        
+    }
+
+
+     //zipcode
+     if(zipValue ===''){
+        setErrorFor(zipcode, 'Zipcode must not be empty.')
+        btnable =  false;
+    }
+    else{
+        setSuccessfor(zipcode)
+       
+    }
+
+
+     //district
+     if(districtValue ===''){
+        setErrorFor(district, 'District must not be empty.')
+        btnable =  false;
+    }
+    else{
+        setSuccessfor(district)
+       
+        
+    }
+
+    if(btnable){
+        document.getElementById("btn1").disabled = false;
+      
+        
+        }
+        else {
+            document.getElementById("btn1").disabled = true;
+} 
+   
+    return true
+   
+   
+
 }
+
+const user = []
+let users 
 
 //functions
-function validateLength(e){
-  if (e.value.length > 2){
-    e.classList.remove("invalid")
-    return false
-  }
-  else{
-    e.classList.add("invalid")
-    return true
-  }
+function setErrorFor(input, message){
+    
+    const formGroup = input.parentElement;
+    const small = formGroup.querySelector('small');
+
+    small.innerText = message;
+    formGroup.className = 'form-group error'
 }
 
-function validateEmail(e){
-  const regex= /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  if (regex.test(e.value)){
-    e.classList.remove("invalid")
-   return false
-  }
-   else{
-    e.classList.add("invalid")
-    return true
-   }
+function setSuccessfor(input){
+    const formGroup = input.parentElement;
+    formGroup.className = 'form-group success'
 }
 
-function validateNumber(e){
-  const regexnum = /^-?\d+\.?\d*$/
-  if ( regexnum.test(e.value)){
-    e.classList.remove("invalid")
-    return false
-  }
-  else{
-    e.classList.add("invalid")
-    return true
-  }
+
+function isText(text){
+    return /^[a-zA-ZäöåÄÖÅ]+$/.test(text);
 }
+
+
+function isEmail(email){
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+
+
+function resetForm(){
+    document.getElementById("btn1").disabled = true;
+    var frmMain = document.forms[0]; 
+    frmMain.reset();
+    checkInput();
+    topFunction();
+    }
+
+
+
+
+function addInput(){
+    
+       const user = []
+       
+       
+          
+     
+      let users = new User(`${fname.value}`, `${lname.value}`, `${phone.value}`, `${email.value}`, `${street.value}`, `${zipcode.value}`, `${district.value}`, `${district.value}`);
+      
+      user.push(users) 
+
+    
+        
+
+const userDiv = document.createElement('div')
+const flipDiv = document.createElement('div')
+const panelDiv = document.createElement('div')
+
+// giv them class & ID
+flipDiv.className = "flip"
+panelDiv.className = "panel"
+userDiv.id = `user`
+flipDiv.id = `flip`
+panelDiv.id = `panel`
+
+  
+
+
+  
+var currentDiv = document.getElementById('part2');
+currentDiv.appendChild(userDiv)
+userDiv.appendChild(flipDiv)
+userDiv.appendChild(panelDiv)
+
+const displayname = document.createElement("div")   
+displayname.id = "displayname"
+flipDiv.appendChild(displayname)
+
+const btnElement = document.createElement("button")
+btnElement.classList.add("btn")
+btnElement.id = "btn"
+flipDiv.appendChild(btnElement)
+const iconElement = document.createElement("i")
+iconElement.classList.add("fa")
+iconElement.innerHTML="&#xf063;"
+btnElement.appendChild(iconElement) 
+
+ 
+    const fullnamediv = document.createElement("div");
+    const showdiv = document.createElement("div");
+    const partdiv = document.createElement("div");
+    const div1 = document.createElement("div");
+    const lblid = document.createElement("label");
+    const spanid = document.createElement("span");
+    const div2 = document.createElement("div");
+    const lblemail = document.createElement("label");
+    const spanemail = document.createElement("span");
+    const div3 = document.createElement("div");
+    const lblphone = document.createElement("label");
+    const spanphone = document.createElement("span");
+    const part1div = document.createElement("div");
+    const streetdiv = document.createElement("div");
+    const spanzip = document.createElement("span");
+    const spandist = document.createElement("span");
+    
+
+   
+    
+    fullnamediv.id="fullname"
+    panelDiv.appendChild(fullnamediv)
+    
+    showdiv.classList.add('show')
+    panelDiv.appendChild(showdiv)
+    
+    partdiv.id = "part"
+    partdiv.classList.add('part')
+    showdiv.appendChild(partdiv)
+    
+    partdiv.appendChild(div1)
+    
+    div1.appendChild(lblid)
+    lblid.innerText="Id"
+    spanid.id = "userId"
+    div1.appendChild(spanid)
+    
+    partdiv.appendChild(div2)
+    
+    div2.appendChild(lblemail)
+    lblemail.innerText="E-post"
+    spanemail.id = "userEmail"
+    div2.appendChild(spanemail)
+    
+    partdiv.appendChild(div3)
+    
+    div3.appendChild(lblphone)
+    lblphone.innerText="Telephone"
+    spanphone.id = "userphone"
+    div3.appendChild(spanphone)
+    
+    part1div.classList.add('part')
+    showdiv.appendChild(part1div)
+    
+    streetdiv.id="userstreet"
+    part1div.appendChild(streetdiv)
+    spanzip.id = "userzip"
+    part1div.appendChild(spanzip)
+    spandist.id = "userdist"
+    part1div.appendChild(spandist)
+    
+ 
+    
+    document.getElementById('displayname').innerText = `${users.fname}` + ` ${users.lname}`;
+    document.getElementById('fullname').innerText = `${users.fname}` + ` ${users.lname}`;
+    document.getElementById('userId').innerText = users.id;
+    document.getElementById('userEmail').innerText = `${users.email}` ;
+    document.getElementById('userphone').innerText = `${users.phone}`;
+    document.getElementById('userstreet').innerText = `${users.street}`;
+    document.getElementById('userzip').innerText = `${users.zipcode},`;
+    document.getElementById('userdist').innerText = `${users.district}`;
+
+    alert(`${users.fname}` + ` ${users.lname}` + " has been registered")
+    
+    resetForm()
+
+    
+ 
+    //console.log(user)
+
+   
+    
+
+}
+    
+
+
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+ 
+
+
+
+
+
+
+
