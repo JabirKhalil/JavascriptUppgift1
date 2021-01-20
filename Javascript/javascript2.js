@@ -34,14 +34,10 @@ form.addEventListener('submit',(e) => {
     e.preventDefault();
 
     checkInput()
-  /*  createElement () 
-    fillPanel() */
-    
-       /*  document.getElementById('text-output').innerText = "Användare skapades!"
-        createElement();
-        fillPanel(); */
+  
         addInput()
-      console.log('done')
+      
+      
      
 });
 
@@ -269,42 +265,90 @@ var currentDiv = document.getElementById('part2');
 currentDiv.appendChild(userDiv)
 userDiv.appendChild(flipDiv)
 userDiv.appendChild(panelDiv)
-    console.log(user)
-  
-    displayname = document.createElement("div")
-    displayname.id ="displayname"
-    flipDiv.appendChild(displayname)
-    displayname.innerText = `${users.fname}` + ` ${users.lname}`
-
-    btnElement = document.createElement("button")
-    btnElement.classList.add("btn")
-    btnElement.id = "btn"
-    flipDiv.appendChild(btnElement)
-    iconElement = document.createElement("i")
-    iconElement.classList.add("fa")
-    iconElement.innerHTML="&#xf063;"
-    btnElement.appendChild(iconElement) 
-
-    idElement = document.createElement("p")
-    idElement.innerText = `Id: ${users.id}`
-  
-    emailElement = document.createElement("p")
-    emailElement.innerText = `E-mail: ${users.email}`
-    emailElement.id = `${users.id}-email`
-  
-    phoneElement = document.createElement("p")
-    phoneElement.innerText = `Phone: ${users.phone}`
-    phoneElement.id = `${users.id}-phone`
-  
-    panelDiv.appendChild(idElement)
-    panelDiv.appendChild(emailElement)
-    panelDiv.appendChild(phoneElement) 
-
-    var element = document.getElementById("btn");
-    element.onclick = function( myFunction) {
-      console.log( myFunction);
     
-    }
+  
+  
+
+ 
+    const fullnamediv = document.createElement("div");
+    const showdiv = document.createElement("div");
+    const partdiv = document.createElement("div");
+    const div1 = document.createElement("div");
+    const lblid = document.createElement("label");
+    const spanid = document.createElement("span");
+    const div2 = document.createElement("div");
+    const lblemail = document.createElement("label");
+    const spanemail = document.createElement("span");
+    const div3 = document.createElement("div");
+    const lblphone = document.createElement("label");
+    const spanphone = document.createElement("span");
+    const part1div = document.createElement("div");
+    const streetdiv = document.createElement("div");
+    const spanzip = document.createElement("span");
+    const spandist = document.createElement("span");
+    
+
+   
+    
+    fullnamediv.id="fullname"
+    panelDiv.appendChild(fullnamediv)
+    
+    showdiv.classList.add('show')
+    panelDiv.appendChild(showdiv)
+    
+    partdiv.id = "part"
+    partdiv.classList.add('part')
+    showdiv.appendChild(partdiv)
+    
+    partdiv.appendChild(div1)
+    
+    div1.appendChild(lblid)
+    lblid.innerText="Id"
+    spanid.id = "userId"
+    div1.appendChild(spanid)
+    
+    partdiv.appendChild(div2)
+    
+    div2.appendChild(lblemail)
+    lblemail.innerText="E-post"
+    spanemail.id = "userEmail"
+    div2.appendChild(spanemail)
+    
+    partdiv.appendChild(div3)
+    
+    div3.appendChild(lblphone)
+    lblphone.innerText="Telephone"
+    spanphone.id = "userphone"
+    div3.appendChild(spanphone)
+    
+    part1div.classList.add('part')
+    showdiv.appendChild(part1div)
+    
+    streetdiv.id="userstreet"
+    part1div.appendChild(streetdiv)
+    spanzip.id = "userzip"
+    part1div.appendChild(spanzip)
+    spandist.id = "userdist"
+    part1div.appendChild(spandist)
+    
+    console.log(fullnamediv)
+    
+    document.getElementById('flip').innerText = `${users.fname}` + ` ${users.lname}`;
+    document.getElementById('fullname').innerText = `${users.fname}` + ` ${users.lname}`;
+    document.getElementById('userId').innerText = users.id;
+    document.getElementById('userEmail').innerText = `${users.email}` ;
+    document.getElementById('userphone').innerText = `${users.phone}`;
+    document.getElementById('userstreet').innerText = `${users.street}`;
+    document.getElementById('userzip').innerText = `${users.zipcode},`;
+    document.getElementById('userdist').innerText = `${users.district}`;
+
+    resetForm()
+
+ 
+
+
+
+   
     
 
 }
@@ -322,43 +366,3 @@ userDiv.appendChild(panelDiv)
 
 
 
-/* function createElement () {
-    // CREATE ELEMENT
-    const userDiv = document.createElement('div')
-    const flipDiv = document.createElement('div')
-    const panelDiv = document.createElement('div')
-  
-    // giv them class & ID
-    flipDiv.className = "flip"
-    panelDiv.className = "panel"
-    userDiv.id = `user`
-    flipDiv.id = `flip`
-    panelDiv.id = `panel`
-  
-  	
-    flipDiv.innerText = `${users.fname}` + ` ${users.lname}`
-  
-  	
-    var currentDiv = document.getElementById('part2');
-    currentDiv.appendChild(userDiv)
-    userDiv.appendChild(flipDiv)
-    userDiv.appendChild(panelDiv)
-  }
-
-  function fillPanel() {
-    idElement = document.createElement("div")
-    idElement.innerText = `Id: ${users.id}`
-  
-    emailElement = document.createElement("p")
-    emailElement.innerText = `E-mail: ${users.email}`
-    emailElement.id = `${users.id}-email`
-  
-    phoneElement = document.createElement("p")
-    phoneElement.innerText = `Phone: ${users.phone}`
-    phoneElement.id = `${users.id}-phone`
-  
-    panelDiv.appendChild(idElement)
-    panelDiv.appendChild(emailElement)
-    panelDiv.appendChild(phoneElement)
-  } */
- 
