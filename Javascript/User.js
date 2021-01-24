@@ -1,5 +1,5 @@
-/* import { uuidv4 } from "./functions.js";
-export default class Person{
+ import { uuidv4 } from "./functions.js";
+export default class User{
     constructor(fname, lname, phone, email, street, zipcode, district){
         this.fname = fname
         this.lname = lname
@@ -12,7 +12,7 @@ export default class Person{
     }
     
 }
- */
+ 
 
 
  

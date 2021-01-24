@@ -213,9 +213,10 @@ function addInput(){
      
       let users = new User(`${fname.value}`, `${lname.value}`, `${phone.value}`, `${email.value}`, `${street.value}`, `${zipcode.value}`, `${district.value}`, `${district.value}`);
       
+   
       user.push(users) 
 
-    
+    console.log(users)
         
 
 const userDiv = document.createElement('div')
